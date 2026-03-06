@@ -29,11 +29,27 @@ public:
 
     // TODO: Implement the collision detection
     [[nodiscard]] bool IfCollides(const std::shared_ptr<Character>& other) const {
-        (void) other;
+        float distance = glm::distance(m_Transform.translation, other->GetPosition());
+
+        if (distance < 50.0f)
+            return true;
+
         return false;
     }
 
     // TODO: Add and implement more methods and properties as needed to finish Giraffe Adventure.
+    void move_forward() {
+        m_Transform.translation.y += 2.0f;
+    }
+    void move_back() {
+        m_Transform.translation.y -= 2.0f;
+    }
+    void move_right() {
+        m_Transform.translation.x += 2.0f;
+    }
+    void move_left() {
+        m_Transform.translation.x -= 2.0f;
+    }
 
 private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }
